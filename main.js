@@ -2,10 +2,13 @@ const gridContainer = document.querySelector(".container");
 const containerSize = gridContainer.clientWidth;
 
 /**
- * Create a grid based on the number of cell requested 
+ * Create a grid based on the number of cells requested 
  * 
- * @param {*} cellNumber 
- * @param {*} containerSize 
+ * The size of the cells is computed so that cells 
+ * fill the container. 
+ * 
+ * @param {number} cellNumber 
+ * @param {number} containerSize 
  */
 function createGrid(cellNumber, containerSize) {
 
@@ -17,10 +20,18 @@ function createGrid(cellNumber, containerSize) {
         cell.classList.add("cellClass");
 
         cell.style.width = `${cellSize}px`;
-        cell.style.height= `${cellSize}px`;
+        cell.style.height = `${cellSize}px`;
+
+        cell.onmouseover = () => cell.style.backgroundColor = "red";
 
         gridContainer.appendChild(cell);
 
     }
     
 }
+
+createGrid(10, containerSize);
+
+
+
+
