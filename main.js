@@ -1,5 +1,16 @@
 const gridContainer = document.querySelector(".container");
 const containerSize = gridContainer.clientWidth;
+const cellSizeForm = document.querySelector("form");
+
+cellSizeForm.addEventListener("submit", () => {
+
+    const userEntry = document.getElementById('cellNumber').value;
+
+    createGrid(userEntry, containerSize)
+    
+    event.preventDefault();
+
+});
 
 /**
  * Create a grid based on the number of cells requested 
@@ -30,7 +41,9 @@ function createGrid(cellNumber, containerSize) {
     
 }
 
-createGrid(10, containerSize);
+
+
+
 
 
 
