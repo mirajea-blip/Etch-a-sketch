@@ -6,6 +6,10 @@ cellSizeForm.addEventListener("submit", () => {
 
     const userEntry = document.getElementById('cellNumber').value;
 
+    while (gridContainer.hasChildNodes()) {
+        gridContainer.removeChild(gridContainer.firstChild);
+    }
+
     createGrid(userEntry, containerSize)
     
     event.preventDefault();
