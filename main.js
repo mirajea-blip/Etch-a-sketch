@@ -37,7 +37,24 @@ function createGrid(cellNumber, containerSize) {
         cell.style.width = `${cellSize}px`;
         cell.style.height = `${cellSize}px`;
 
-        cell.onmouseover = () => cell.style.backgroundColor = "red";
+        cell.onmouseover = () => {
+
+            const cellComputedStyle = window.getComputedStyle(cell);
+            const cellColor = cellComputedStyle.backgroundColor;
+            let cellRgba = cellColor.slice(cellColor.indexOf("(") + 1, cellColor.indexOf(")")).split(",");
+
+            /* rgba(r,g,b,1) is automatically converted to rgb(r,g,b)
+               Without the following if : for colors with b=0 an opacity value inferior to 1 is created
+               The 11th hovering event sets an opacity of 0.1 for the cell. 
+            */
+            if (cellRgba.length > 3) {
+
+                const newOpacity = parseFloat(cellRgba.slice(-1)) + 0.1;
+                cell.style.backgroundColor = `rgba(${cellRgba.at(0)}, ${cellRgba.at(1)}, ${cellRgba.at(2)}, ${newOpacity})`;
+            
+            }
+
+        };
 
         gridContainer.appendChild(cell);
 
